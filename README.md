@@ -1,4 +1,4 @@
 dashing-chef
 ============
 
-A less pretentious version of the dashing that can be installed using chef
+Installs [Dashing](http://shopify.github.io/dashing/) and configures dashboards to run as services.
