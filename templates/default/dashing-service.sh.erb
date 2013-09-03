@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Setup Ruby
+<%= node["dashing"]["ruby_env"] %>
+
+# Setup JS
+<%= node["dashing"]["js_env"] %>
+
+# Run dashing
+<%= node["dashing"]["dashing_exec"] %> $@

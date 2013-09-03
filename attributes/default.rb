@@ -1,6 +1,10 @@
-default["dashing"]["ruby_version"] = "1.9.3-p385"
+default["dashing"]["version"] = ""
 default["dashing"]["user"] = "dashing"
 default["dashing"]["group"] = "dashing"
+
+default["dashing"]["ruby_env"] = ""
+default["dashing"]["js_env"] = ""
+default["dashing"]["dashing_exec"] = "dashing"
 
 if node["platform"] == "ubuntu"
     default["dashing"]["service_type"] = "upstart"

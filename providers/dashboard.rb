@@ -107,10 +107,7 @@ def setup_dashboard(current_resource, new_resource)
             set -e
 
             echo "init"
-            eval "$(/opt/rbenv/bin/rbenv init -)"
-            echo "rbenv shell"
-            rbenv shell "#{node["dashing"]["ruby_version"]}"
-            echo "new"
+            #{node["dashing"]["ruby_env"]}
             dashing new .
 
             EOH
@@ -139,8 +136,7 @@ def setup_dashboard(current_resource, new_resource)
             # Quit on error
             set -e
 
-            eval "$(/opt/rbenv/bin/rbenv init -)"
-            rbenv shell "#{node["dashing"]["ruby_version"]}"
+            #{node["dashing"]["ruby_env"]}
             bundle
 
             EOH

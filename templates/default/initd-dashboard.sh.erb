@@ -25,7 +25,6 @@ set -e
 NAME="<%= @service_name %>"
 DASHING_DIR="<%= @dashboard_path %>"
 PIDFILE="$DASHING_DIR/$NAME.pid"
-DAEMON=<%= node["rbenv"]["install_prefix"] %>/rbenv/shims/dashing
 
 DASHING_PORT=<%= @dashboard_port %>
 DAEMON_OPTS="start -d -p $DASHING_PORT -P $PIDFILE --tag $NAME -D"
@@ -45,7 +44,7 @@ function checkuser() {
 function start_dashing() {
   log_action_msg "Starting daemon: $NAME" || true
   sleep 5
-  start-stop-daemon --verbose --quiet --start --chuid $RUNUSER:$RUNGROUP --chdir $DASHING_DIR --exec /usr/bin/env RBENV_VERSION=<%= @ruby_version %> $DAEMON -- $DAEMON_OPTS
+  start-stop-daemon --quiet --start --pidfile $PIDFILE --chuid $RUNUSER:$RUNGROUP --chdir $DASHING_DIR --exec /usr/sbin/dashing-service -- $DAEMON_OPTS
   log_end_msg 0
 }
 
