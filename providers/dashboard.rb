@@ -40,11 +40,16 @@ end
 
 # Create a dashboard and force a restart.
 action :restart do
+    # Stop the old service, if there is one.
+    if current_resource.service_type != nil
+        create_service(current_resource, :stop)
+    end
+
     # Make sure the dashboard is setup and running
     setup_dashboard(current_resource, new_resource)
 
     # Force-restart the dashboard service.
-    create_service(current_resource, :restart)
+    create_service(new_resource, :restart)
 end
 
 private
