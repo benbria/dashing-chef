@@ -27,7 +27,7 @@ DASHING_DIR="<%= @dashboard_path %>"
 PIDFILE="$DASHING_DIR/$NAME.pid"
 
 DASHING_PORT=<%= @dashboard_port %>
-DAEMON_OPTS="start -d -p $DASHING_PORT -P $PIDFILE --tag $NAME -D"
+DAEMON_OPTS="start -d -e production -p $DASHING_PORT -P $PIDFILE --tag $NAME -D"
 
 RUNUSER=<%= node["dashing"]["user"] %>
 RUNGROUP=<%= node["dashing"]["group"] %>

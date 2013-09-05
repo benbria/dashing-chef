@@ -16,7 +16,7 @@ script
 
     echo $$ > "/var/run/<%= @service_name %>.pid"
     cd "${DASHBOARD_DIR}"
-    exec sudo -u <%= node["dashing"]["user"] %> /usr/sbin/dashing-service start -p ${DASHING_PORT}
+    exec sudo -u <%= node["dashing"]["user"] %> /usr/sbin/dashing-service start -e production -p ${DASHING_PORT}
 end script
 
 pre-stop script
