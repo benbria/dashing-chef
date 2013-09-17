@@ -1,0 +1,29 @@
+{
+  "name": "dashing",
+  "description": "Installs/Configures dashing - http://shopify.github.io/dashing/",
+  "long_description": "dashing Cookbook\n================\n\nInstalls [Dashing](http://shopify.github.io/dashing/) and configures dashboards to run as services.\n\nTested with Ubuntu 12.04.\n\nLicense\n-------\nMIT License\n\nRequirements\n------------\n\nIn order to use the Dashing cookbook, you need to have Ruby installed, and some sort of JavaScript\nengine.\n\nDashing is written in Ruby, and requires Ruby to run.  In order to make your installation as\nflexible as possible, the Dashing cookbook does not explicitly install Ruby; you can have a\nsystem-wide ruby installed, or use [rvm](https://rvm.io/) or\n[rbenv](https://github.com/sstephenson/rbenv) to install Ruby.  If you are not using a globally\naccessible version of ruby, or don't want to use the system default, then set\n`node[\"dashing\"][\"ruby_env\"]` to a set of bash commands to set up your environment appropriately.\n(e.g. `'source /etc/profile.d/rvm.sh && rvm use ruby-1.9.3-p385')\n\nDashing also requires a JavaScript framework installed, as it relies on\n[execjs](https://github.com/sstephenson/execjs) to compile [coffee-script](http://coffeescript.org/)\nwidgets.  We recommend using node.js, but you can use whatever you like.  As with Ruby, there exists\na `node[\"dashing\"][\"js_env\"]` attribute you can use to set up your javascript enviroment\n(e.g. `'source /usr/local/src/nvm/nvm.sh && nvm use v0.8.16'`)\n\nAttributes\n----------\n#### dashing::default\n<table>\n  <tr>\n    <th>Key</th>\n    <th>Type</th>\n    <th>Description</th>\n    <th>Default</th>\n  </tr>\n  <tr>\n    <td><tt>[\"dashing\"][\"ruby_env\"]</tt></td>\n    <td>String</td>\n    <td>Bash commands to set up ruby environemnt.</td>\n    <td><tt>\"\"</tt></td>\n  </tr>\n  <tr>\n    <td><tt>[\"dashing\"][\"js_env\"]</tt></td>\n    <td>String</td>\n    <td>Bash commands to set up js environemnt.</td>\n    <td><tt>\"\"</tt></td>\n  </tr>\n  <tr>\n    <td><tt>[\"dashing\"][\"dashing_exec\"]</tt></td>\n    <td>String</td>\n    <td>Used to explicitly locate the dashing executable..</td>\n    <td><tt>\"dashing\"</tt></td>\n  </tr>\n  <tr>\n    <td><tt>[\"dashing\"][\"user\"]</tt></td>\n    <td>String</td>\n    <td>The user to run dashboards as.</td>\n    <td><tt>dashing</tt></td>\n  </tr>\n  <tr>\n    <td><tt>[\"dashing\"][\"group\"]</tt></td>\n    <td>String</td>\n    <td>The group to run dashboards as.</td>\n    <td><tt>dashing</tt></td>\n  </tr>\n  <tr>\n    <td><tt>[\"dashing\"][\"service_type\"]</tt></td>\n    <td>String</td>\n    <td>The service type to install dashboards as.</td>\n    <td><tt>\"upstart\" on ubuntu, \"init.d\" otherwise</tt></td>\n  </tr>\n</table>\n\nLWRPs\n-----\n\nSee \"Usage\" below for examples.\n\n#### dashing_dashboard\n\nActions:\n\n* `:nothing` - Standard do-nothing action.\n* `:create` - Creates a service which runs the given dashboard automatically at system startup.\n  This will also run `bundle` in the dashboard's directory.  If the dashboard already is configured\n  as a service, `:create` will *not* restart it.\n* `:restart` - Like `:create`, but this will always restart the service - handy if you're going to\n  use `notifies` on whatever resource you're using to deploy your dashboard.\n* `:delete` - Stops and removes the service for a dashboard.  This won't actually delete the\n  directory the dashboard is stored in.\n\nAttributes:\n\n* `path` - The path to the dashboard (if not specified, the name of the resource is used.)\n* `port` - Optional - The port to run the `thin` webserver on.  Note that dashing has no security,\n  so some sort of firewall is recommended.  Defaults to `8080`.\n* `service_type` - Optional - Defaults to `node[\"dashing\"][\"service_type\"]`, although you can use\n  this if, for some crazy reason, you want some of your dashboards to be managed by upstart, and\n  some by init.d.\n\n\nUsage\n-----\nIncluding `dashing` in your node's `run_list` will install Dashing:\n\n```json\n{\n  \"name\":\"my_node\",\n  \"run_list\": [\n    \"recipe[dashing]\"\n  ]\n}\n```\n\nThis cookbook also provides the `dashing_dashboard` LWRP for setting up dashboards as system\nservices:\n\n    # Install dashing\n    include_recipe 'dashing'\n\n    # Fetch our dashboard from git\n    git \"/opt/dashing/my_dashboard\" do\n        repository \"git://github.com/benbria/dashboard.git\"\n        reference \"master\"\n        action :sync\n    end\n\n    # Configure the dashboard as a service.\n    dashing_dashboard \"/opt/dashing/my_dashboard\" do\n        action :restart\n        port 9090\n    end\n\n\nContributing\n------------\nFork and pull request, please! :)\n\nLicense and Authors\n-------------------\nAuthors:\n* [Jason Walton](mailto:jwalton@benbria.ca)\n",
+  "maintainer": "Benbria",
+  "maintainer_email": "jwalton@benbria.ca",
+  "license": "MIT License",
+  "platforms": {
+  },
+  "dependencies": {
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+  },
+  "version": "0.1.0"
+}
