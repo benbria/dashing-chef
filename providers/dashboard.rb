@@ -31,11 +31,13 @@ action :delete do
         create_service(current_resource, :stop)
         delete_service_files(current_resource)
     end
+    new_resource.updated_by_last_action(true)
 end
 
 # Create a dashboard
 action :create do
     setup_dashboard(current_resource, new_resource)
+    new_resource.updated_by_last_action(true)
 end
 
 # Create a dashboard and force a restart.
@@ -50,6 +52,7 @@ action :restart do
 
     # Force-restart the dashboard service.
     create_service(new_resource, :restart)
+    new_resource.updated_by_last_action(true)
 end
 
 private
@@ -240,10 +243,9 @@ end
 
 # Delete files associated with a dashboard service
 def delete_service_files(resource)
-    if get_service_script_name != nil
-        file get_service_script_name(resource) do
-            action :delete
-        end
+    file get_service_script_name(resource) do
+        action :delete
+    only_if { get_service_script_name != nil }
     end
 end
 
