@@ -3,6 +3,8 @@ dashing Cookbook
 
 Installs [Dashing](http://shopify.github.io/dashing/) and configures dashboards to run as services.
 
+See a [sample of how to use this here](https://gist.github.com/spuder/519e605a03eab9c2a136), courtesy [Spencer Owen](https://github.com/spuder).
+
 Tested with Ubuntu 12.04.
 
 License
