@@ -21,7 +21,7 @@ system-wide ruby installed, or use [rvm](https://rvm.io/) or
 [rbenv](https://github.com/sstephenson/rbenv) to install Ruby.  If you are not using a globally
 accessible version of ruby, or don't want to use the system default, then set
 `node["dashing"]["ruby_env"]` to a set of bash commands to set up your environment appropriately.
-(e.g. `'source /etc/profile.d/rvm.sh && rvm use ruby-1.9.3-p385')
+(e.g. `'source /etc/profile.d/rvm.sh && rvm use ruby-1.9.3-p385'`)
 
 Dashing also requires a JavaScript framework installed, as it relies on
 [execjs](https://github.com/sstephenson/execjs) to compile [coffee-script](http://coffeescript.org/)
