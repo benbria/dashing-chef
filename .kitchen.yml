@@ -9,13 +9,11 @@ driver:
     cpus: 2
     cpuexecutioncap: 80
 
+provisioner:
+  name: chef_zero
+
 platforms:
-  - name: ubuntu-12.04-chef-zero
-    provisioner:
-      name: chef_zero
-    driver:
-      box: ubuntu-12.04
-      box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-12.04_chef-provisionerless.box
+  - name: ubuntu-10.04
     run_list:
       - recipe[rvm::system]
       - recipe[nodejs::default]
@@ -25,12 +23,7 @@ platforms:
       rvm:
         rubies:
           - 1.9.3
-  - name: ubuntu-14.04-chef-zero
-    provisioner:
-      name: chef_zero
-    driver:
-      box: ubuntu-14.04
-      box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box
+  - name: ubuntu-12.04
     run_list:
       - recipe[rvm::system]
       - recipe[nodejs::default]
@@ -40,12 +33,7 @@ platforms:
       rvm:
         rubies:
           - 1.9.3
-  - name: debian-7.4-chef-zero
-    provisioner:
-      name: chef_zero
-    driver:
-      box: debian-7.4.0
-      box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-7.4_chef-provisionerless.box
+  - name: ubuntu-14.04
     run_list:
       - recipe[rvm::system]
       - recipe[nodejs::default]
@@ -55,53 +43,46 @@ platforms:
       rvm:
         rubies:
           - 1.9.3
-  - name: centos-6.6-chef-zero
-    provisioner:
-      name: chef_zero
-    driver:
-      box: centos-6.6
-      box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.6_chef-provisionerless.box
-  - name: ubuntu-12.04-chef-solo
-    provisioner:
-      name: chef_solo
-    driver:
-      box: ubuntu-12.04
-      box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-12.04_chef-provisionerless.box
+  - name: debian-7.8
     run_list:
       - recipe[rvm::system]
+      - recipe[nodejs::default]
     attributes:
       dashing:
         ruby_env: 'source /etc/profile.d/rvm.sh && rvm use ruby-1.9.3-p551'
       rvm:
         rubies:
           - 1.9.3
-  - name: ubuntu-14.04-chef-solo
-    provisioner:
-      name: chef_solo
-    driver:
-      box: ubuntu-14.04
-      box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box
-    # run_list:
-    #   - recipe[apt::default]
-    #   - recipe[curl::default]
-    # attributes:
-    #   grafana:
-    #     webserver_listen: ''
-  - name: debian-7.4-chef-solo
-    provisioner:
-      name: chef_solo
-    driver:
-      box: debian-7.4.0
-      box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-7.4_chef-provisionerless.box
-    # run_list:
-    #   - recipe[apt::default]
-    #   - recipe[curl::default]
-  - name: centos-6.6-chef-solo
-    provisioner:
-      name: chef_solo
-    driver:
-      box: centos-6.6
-      box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.6_chef-provisionerless.box
+  - name: debian-8.1
+    run_list:
+      - recipe[rvm::system]
+      - recipe[nodejs::default]
+    attributes:
+      dashing:
+        ruby_env: 'source /etc/profile.d/rvm.sh && rvm use ruby-1.9.3-p551'
+      rvm:
+        rubies:
+          - 1.9.3
+  - name: centos-6.7
+    run_list:
+      - recipe[rvm::system]
+      - recipe[nodejs::default]
+    attributes:
+      dashing:
+        ruby_env: 'source /etc/profile.d/rvm.sh && rvm use ruby-1.9.3-p551'
+      rvm:
+        rubies:
+          - 1.9.3
+  - name: centos-7.1
+    run_list:
+      - recipe[rvm::system]
+      - recipe[nodejs::default]
+    attributes:
+      dashing:
+        ruby_env: 'source /etc/profile.d/rvm.sh && rvm use ruby-1.9.3-p551'
+      rvm:
+        rubies:
+          - 1.9.3
 
 suites:
   - name: default

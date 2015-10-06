@@ -225,11 +225,10 @@ def create_service_files(current_resource, new_resource)
             notifies :enable,  "service[#{service_name}]"
             notifies :restart, "service[#{service_name}]"
         end
-
     when "init.d"
         template "/etc/init.d/#{service_name}" do
             cookbook "dashing"
-            source "initd-dashboard.sh.erb"
+            source node['dashing']['init_source']
             mode 0755
             owner "root"
             group "root"
@@ -237,7 +236,8 @@ def create_service_files(current_resource, new_resource)
             notifies :enable,  "service[#{service_name}]"
             notifies :restart, "service[#{service_name}]"
         end
-
+    else
+        raise "dashing: Unknown service_type '#{rnew_resource.service_type}'"
     end
 end
 

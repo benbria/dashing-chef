@@ -31,6 +31,20 @@ widgets.  We recommend using node.js, but you can use whatever you like.  As wit
 a `node["dashing"]["js_env"]` attribute you can use to set up your javascript enviroment
 (e.g. `'source /usr/local/src/nvm/nvm.sh && nvm use v0.8.16'`)
 
+#### Platforms
+Stable:
+
+* Ubuntu 10.04
+* Ubuntu 12.04
+* Ubuntu 14.04
+* CentOS 6.7
+* CentOS 7.1
+
+Unstable:
+
+* Debian 7.8
+* Debian 8.1
+
 Attributes
 ----------
 #### dashing::default
@@ -75,7 +89,7 @@ Attributes
     <td><tt>["dashing"]["service_type"]</tt></td>
     <td>String</td>
     <td>The service type to install dashboards as.</td>
-    <td><tt>"upstart" on ubuntu, "init.d" otherwise</tt></td>
+    <td><tt>'upstart' on ubuntu, 'init.d' on some other systems. See attributes/default.rb for details.</tt></td>
   </tr>
 </table>
 
