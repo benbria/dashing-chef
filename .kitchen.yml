@@ -15,77 +15,35 @@ provisioner:
 platforms:
   - name: ubuntu-10.04
     run_list:
-      - recipe[rvm::system]
-      - recipe[nodejs::default]
-    attributes:
-      dashing:
-        ruby_env: 'source /etc/profile.d/rvm.sh && rvm use ruby-1.9.3-p551'
-      rvm:
-        rubies:
-          - 1.9.3
+      - recipe[apt::default]
   - name: ubuntu-12.04
     run_list:
-      - recipe[rvm::system]
-      - recipe[nodejs::default]
-    attributes:
-      dashing:
-        ruby_env: 'source /etc/profile.d/rvm.sh && rvm use ruby-1.9.3-p551'
-      rvm:
-        rubies:
-          - 1.9.3
+      - recipe[apt::default]
   - name: ubuntu-14.04
     run_list:
-      - recipe[rvm::system]
-      - recipe[nodejs::default]
-    attributes:
-      dashing:
-        ruby_env: 'source /etc/profile.d/rvm.sh && rvm use ruby-1.9.3-p551'
-      rvm:
-        rubies:
-          - 1.9.3
+      - recipe[apt::default]
   - name: debian-7.8
     run_list:
-      - recipe[rvm::system]
-      - recipe[nodejs::default]
-    attributes:
-      dashing:
-        ruby_env: 'source /etc/profile.d/rvm.sh && rvm use ruby-1.9.3-p551'
-      rvm:
-        rubies:
-          - 1.9.3
+      - recipe[apt::default]
   - name: debian-8.1
     run_list:
-      - recipe[rvm::system]
-      - recipe[nodejs::default]
-    attributes:
-      dashing:
-        ruby_env: 'source /etc/profile.d/rvm.sh && rvm use ruby-1.9.3-p551'
-      rvm:
-        rubies:
-          - 1.9.3
+      - recipe[apt::default]
   - name: centos-6.7
     run_list:
-      - recipe[rvm::system]
-      - recipe[nodejs::default]
-    attributes:
-      dashing:
-        ruby_env: 'source /etc/profile.d/rvm.sh && rvm use ruby-1.9.3-p551'
-      rvm:
-        rubies:
-          - 1.9.3
+      - recipe[yum-centos::default]
   - name: centos-7.1
     run_list:
-      - recipe[rvm::system]
-      - recipe[nodejs::default]
-    attributes:
-      dashing:
-        ruby_env: 'source /etc/profile.d/rvm.sh && rvm use ruby-1.9.3-p551'
-      rvm:
-        rubies:
-          - 1.9.3
+      - recipe[yum-centos::default]
 
 suites:
   - name: default
     run_list:
+      - recipe[rvm::system]
+      - recipe[nodejs::default]
       - recipe[dashing::default]
     attributes:
+      dashing:
+        ruby_env: 'source /etc/profile.d/rvm.sh && rvm use ruby-1.9.3-p551'
+      rvm:
+        rubies:
+          - 1.9.3
