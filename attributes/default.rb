@@ -14,7 +14,7 @@ if node['platform'] == 'ubuntu'
   end
 elsif node['platform'] == 'debian'
     if node['platform_version'].to_i < 8
-        default['dashing']['service_type'] = 'init.d'
+        default['dashing']['service_type'] = 'upstart'
     else
         default['dashing']['service_type'] = 'systemd'
     end

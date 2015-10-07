@@ -85,6 +85,12 @@ def setup_dashboard(current_resource, new_resource)
             # Service will be notified if it needs to be started or restarted.
             service_action = :nothing
         end
+
+        # Done for debian 7.8 complaining that the service files are missing
+        if node['platform'] == 'debian' && node['platform_version'].to_i < 8
+            create_service_files(cached_current_resource, cached_new_resource)
+        end
+
         create_service(cached_new_resource, service_action)
 
         # Create the dashboard directory

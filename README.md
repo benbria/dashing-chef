@@ -37,12 +37,12 @@ Stable:
 * Ubuntu 10.04
 * Ubuntu 12.04
 * Ubuntu 14.04
+* Debian 7.8
 * CentOS 6.7
 * CentOS 7.1
 
 Unstable:
 
-* Debian 7.8
 * Debian 8.1
 
 Attributes
