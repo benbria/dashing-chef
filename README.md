@@ -5,12 +5,6 @@ Installs [Dashing](http://shopify.github.io/dashing/) and configures dashboards 
 
 See a [sample of how to use this here](https://gist.github.com/spuder/519e605a03eab9c2a136), courtesy [Spencer Owen](https://github.com/spuder).
 
-Tested with Ubuntu 12.04.
-
-License
--------
-MIT License
-
 Requirements
 ------------
 
@@ -30,6 +24,20 @@ Dashing also requires a JavaScript framework installed, as it relies on
 widgets.  We recommend using node.js, but you can use whatever you like.  As with Ruby, there exists
 a `node["dashing"]["js_env"]` attribute you can use to set up your javascript enviroment
 (e.g. `'source /usr/local/src/nvm/nvm.sh && nvm use v0.8.16'`)
+
+#### Platforms
+Stable:
+
+* Ubuntu 10.04
+* Ubuntu 12.04
+* Ubuntu 14.04
+* Debian 7.8
+* CentOS 6.7
+* CentOS 7.1
+
+Unstable:
+
+* Debian 8.1
 
 Attributes
 ----------
@@ -75,7 +83,7 @@ Attributes
     <td><tt>["dashing"]["service_type"]</tt></td>
     <td>String</td>
     <td>The service type to install dashboards as.</td>
-    <td><tt>"upstart" on ubuntu, "init.d" otherwise</tt></td>
+    <td><tt>'upstart' on ubuntu, 'init.d' on some other systems. See attributes/default.rb for details.</tt></td>
   </tr>
 </table>
 
@@ -144,7 +152,11 @@ Contributing
 ------------
 Fork and pull request, please! :)
 
-License and Authors
+Authors
 -------------------
 Authors:
 * [Jason Walton](mailto:jwalton@benbria.ca)
+
+License
+-------
+MIT License

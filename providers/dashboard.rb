@@ -85,6 +85,12 @@ def setup_dashboard(current_resource, new_resource)
             # Service will be notified if it needs to be started or restarted.
             service_action = :nothing
         end
+
+        # Done for debian 7.8 complaining that the service files are missing
+        if node['platform'] == 'debian' && node['platform_version'].to_i < 8
+            create_service_files(cached_current_resource, cached_new_resource)
+        end
+
         create_service(cached_new_resource, service_action)
 
         # Create the dashboard directory
@@ -225,11 +231,10 @@ def create_service_files(current_resource, new_resource)
             notifies :enable,  "service[#{service_name}]"
             notifies :restart, "service[#{service_name}]"
         end
-
     when "init.d"
         template "/etc/init.d/#{service_name}" do
             cookbook "dashing"
-            source "initd-dashboard.sh.erb"
+            source node['dashing']['init_source']
             mode 0755
             owner "root"
             group "root"
@@ -237,7 +242,8 @@ def create_service_files(current_resource, new_resource)
             notifies :enable,  "service[#{service_name}]"
             notifies :restart, "service[#{service_name}]"
         end
-
+    else
+        raise "dashing: Unknown service_type '#{rnew_resource.service_type}'"
     end
 end
 
